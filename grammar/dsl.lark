@@ -1,0 +1,19 @@
+start: comando+
+
+comando: configurar_banco
+       | iniciar_servidor
+       | executar_teste
+       | deploy_ambiente
+
+configurar_banco: "configurarBanco" STRING STRING
+iniciar_servidor: "iniciarServidor" STRING [porta_param]
+executar_teste: "executarTeste" STRING
+deploy_ambiente: "deployEmAmbiente" STRING
+
+porta_param: "porta=" NUMBER
+
+STRING: /"[^"]*"/
+NUMBER: /[0-9]+/
+
+%import common.WS
+%ignore WS 
