@@ -6,7 +6,7 @@ comando: configurar_banco
        | deploy_ambiente
 
 configurar_banco: "configurarBanco" STRING STRING
-iniciar_servidor: "iniciarServidor" STRING [porta_param]
+iniciar_servidor: "iniciarServidor" STRING porta_param
 executar_teste: "executarTeste" STRING
 deploy_ambiente: "deployEmAmbiente" STRING
 
