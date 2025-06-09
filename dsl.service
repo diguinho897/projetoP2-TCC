@@ -1,0 +1,13 @@
+[Unit]
+Description=DSL para Automação de Ambiente de Desenvolvimento
+After=network.target
+
+[Service]
+Type=simple
+User=%i
+WorkingDirectory=/opt/dsl
+ExecStart=/opt/dsl/venv/bin/python /opt/dsl/src/run_dsl.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 

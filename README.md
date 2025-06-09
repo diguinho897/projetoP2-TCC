@@ -1,50 +1,120 @@
 # DSL para Automação de Ambiente de Desenvolvimento
 
-Este projeto implementa uma Linguagem de Domínio Específico (DSL) para automação de ambientes de desenvolvimento.
+Uma linguagem de domínio específico (DSL) para automação de ambientes de desenvolvimento, implementada em Python usando PLY.
 
-## Estrutura do Projeto
+## Requisitos
 
-```
-.
-├── src/
-│   ├── lexer/         # Implementação do analisador léxico
-│   ├── parser/        # Implementação do parser
-│   ├── semantic/      # Analisador semântico
-│   └── vm/           # Máquina virtual para execução
-├── tests/            # Testes unitários e de integração
-├── examples/         # Exemplos de scripts
-└── grammar/         # Definição da gramática
-```
+- Python 3.8+
+- pip
+- Pop!_OS (ou outra distribuição Linux baseada em Ubuntu)
 
 ## Instalação
 
-1. Clone o repositório
-2. Crie um ambiente virtual:
+### Instalação Manual
+
+1. Clone o repositório:
 ```bash
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-venv\Scripts\activate     # Windows
+git clone https://github.com/seu-usuario/dsl-automacao.git
+cd dsl-automacao
 ```
-3. Instale as dependências:
+
+2. Execute o script de instalação:
 ```bash
-pip install -r requirements.txt
+chmod +x install.sh
+./install.sh
+```
+
+### Instalação como Serviço
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/dsl-automacao.git
+cd dsl-automacao
+```
+
+2. Execute o script de instalação do serviço:
+```bash
+chmod +x install_service.sh
+sudo ./install_service.sh
 ```
 
 ## Uso
 
-Exemplo de script:
+### Executando Scripts DSL
+
+```bash
+python src/run_dsl.py examples/test.dsl
 ```
-configurarBanco "localhost" "banco_teste"
-iniciarServidor "localhost" porta=8080
-executarTeste "testes_unitarios"
-deployEmAmbiente "producao"
+
+### Comandos Disponíveis
+
+1. Configurar Banco de Dados:
+```
+configurar_banco "tipo" "host" "porta" "nome" "usuario" "senha"
+```
+
+2. Iniciar Servidor:
+```
+iniciar_servidor "tipo" "arquivo" "porta"
+```
+
+3. Executar Testes:
+```
+executar_teste "framework" "diretorio"
+```
+
+4. Deploy em Ambiente:
+```
+deploy_ambiente "ambiente" "branch" "repositorio"
+```
+
+### Logs
+
+Os logs de execução são armazenados em `logs/dsl_execution.log`.
+
+### Serviço Systemd
+
+Se instalado como serviço, você pode:
+
+- Verificar status:
+```bash
+systemctl status dsl@$USER
+```
+
+- Ver logs:
+```bash
+journalctl -u dsl@$USER
 ```
 
 ## Desenvolvimento
 
-- `black` para formatação de código
-- `mypy` para verificação de tipos
-- `pytest` para testes
+### Estrutura do Projeto
+
+```
+.
+├── src/
+│   ├── lexer/
+│   │   └── lexer.py
+│   ├── parser/
+│   │   └── parser.py
+│   ├── vm/
+│   │   └── interpreter.py
+│   └── run_dsl.py
+├── examples/
+│   └── test.dsl
+├── tests/
+│   └── test_*.py
+├── requirements.txt
+├── install.sh
+├── install_service.sh
+└── dsl.service
+```
+
+### Executando Testes
+
+```bash
+pytest
+```
 
 ## Licença
 
