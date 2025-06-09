@@ -9,7 +9,6 @@ tokens = (
     'EXECUTAR_TESTE',
     'DEPLOY_AMBIENTE',
     'PORTA',
-    'COMMENT',
 )
 
 # Regras para tokens simples
