@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    image: python:3.10-slim
+    container_name: app_producao
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: python src/run_dsl.py examples/exemplo.dsl
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+
+  db:
+    image: postgres:14
+    container_name: db_producao
+    environment:
+      POSTGRES_DB: banco_teste
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sua_senha_aqui
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: 
