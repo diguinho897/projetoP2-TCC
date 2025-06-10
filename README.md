@@ -50,7 +50,7 @@ python src/run_dsl.py examples/test.dsl
 
 1. Configurar Banco de Dados:
 ```
-configurar_banco "tipo" "host" "porta" "nome" "usuario" "senha"
+configurarBanco "host" "nome_do_banco" "senha"
 ```
 
 2. Iniciar Servidor:

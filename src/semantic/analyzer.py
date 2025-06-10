@@ -54,7 +54,8 @@ class SemanticAnalyzer:
                 CommandType.CONFIGURAR_BANCO,
                 {
                     'host': node.children[0].value.strip('"'),
-                    'banco': node.children[1].value.strip('"')
+                    'banco': node.children[1].value.strip('"'),
+                    'senha': node.children[2].value.strip('"')
                 }
             )
         elif node.data == 'iniciar_servidor':

@@ -39,10 +39,11 @@ def p_command(p):
     p[0] = p[1]
 
 def p_configurar_banco(p):
-    'configurar_banco : CONFIGURAR_BANCO STRING STRING'
+    'configurar_banco : CONFIGURAR_BANCO STRING STRING STRING'
     p[0] = Command('configurar_banco', {
         'host': p[2],
-        'database': p[3]
+        'database': p[3],
+        'senha': p[4]
     })
 
 def p_iniciar_servidor(p):

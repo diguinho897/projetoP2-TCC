@@ -89,12 +89,13 @@ class DSLInterpreter:
                 except:
                     pass
     
-    def _handle_configurar_banco(self, host: str, database: str) -> bool:
+    def _handle_configurar_banco(self, host: str, database: str, senha: str) -> bool:
         """Configura o banco de dados."""
         try:
             # Remove as aspas dos argumentos
             host = host.strip('"')
             database = database.strip('"')
+            senha = senha.strip('"')
             
             self.logger.info(f"Configurando banco de dados: {database} em {host}")
             
@@ -103,8 +104,8 @@ class DSLInterpreter:
                 self.logger.error("PostgreSQL não está instalado")
                 return False
             
-            # Cria o banco de dados
-            cmd = f"sudo -u postgres psql -h {host} -c 'CREATE DATABASE {database}'"
+            # Cria o banco de dados usando senha
+            cmd = f"PGPASSWORD={senha} psql -h {host} -U postgres -c 'CREATE DATABASE {database}'"
             result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
             
             if result.returncode == 0:
@@ -218,7 +219,7 @@ WantedBy=multi-user.target
                 self.logger.info(f"Deploy realizado com sucesso em {ambiente}")
                 return True
             else:
-                self.logger.error(f"Erro no deploy: {result.stderr}")
+                self.logger.error(f"Erro no deploy: {result.stderr}. Verifique se o arquivo docker-compose.{ambiente}.yml existe e está no caminho correto.")
                 return False
                 
         except Exception as e:
