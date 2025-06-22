@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_DB: banco_teste
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sua_senha_aqui
+      POSTGRES_PASSWORD: sua_senha_aqui_test
     ports:
       - "55432:5432"
     volumes:

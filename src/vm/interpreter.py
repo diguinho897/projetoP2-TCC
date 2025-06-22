@@ -228,8 +228,17 @@ WantedBy=multi-user.target
     
     def _check_command_exists(self, command: str) -> bool:
         """Verifica se um comando existe no sistema."""
-        return subprocess.run(['which', command], 
-                            capture_output=True).returncode == 0
+        if command == 'pytest':
+            try:
+                # Tenta importar pytest para verificar se está disponível para o Python
+                subprocess.run(['python3', '-c', 'import pytest'], check=True, capture_output=True)
+                return True
+            except (subprocess.CalledProcessError, FileNotFoundError):
+                return False
+        else:
+            # Para outros comandos, usa 'which'
+            return subprocess.run(['which', command], 
+                                capture_output=True).returncode == 0
     
     def _is_port_in_use(self, port: int) -> bool:
         """Verifica se uma porta está em uso."""
