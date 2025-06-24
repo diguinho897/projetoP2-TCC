@@ -14,7 +14,7 @@ Uma linguagem de domínio específico (DSL) para automação de ambientes de des
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/dsl-automacao.git
+git clone https://github.com/diguinho897/projetoP2-TCC.git
 cd dsl-automacao
 ```
 
@@ -28,8 +28,8 @@ chmod +x install.sh
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/dsl-automacao.git
-cd dsl-automacao
+git clone https://github.com/diguinho897/projetoP2-TCC.git
+cd projetoP2-TCC
 ```
 
 2. Execute o script de instalação do serviço:
